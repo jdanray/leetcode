@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/counting-bits/
+
 class Solution:
 	def countBits(self, num):
 		if num == 0:
@@ -20,7 +22,8 @@ class Solution:
 		return B
 
 # After I solve a problem, I like to review other people's solutions
-# This is adapted from a solution on programcreek.com
+# The following is adapted from a solution on programcreek.com
+
 class Solution:
 	def countBits(self, num):
 		B = [0]
