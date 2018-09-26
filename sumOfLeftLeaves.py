@@ -2,6 +2,38 @@
 
 class Solution:
 	def sumOfLeftLeaves(self, root):
+		s = 0
+		stack = [root]
+		while stack:
+			node = stack.pop()
+
+			if not node:
+				continue
+
+			if node.left and not (node.left.left or node.left.right):
+				s += node.left.val
+
+			stack.append(node.left)
+			stack.append(node.right)
+
+		return s
+
+class Solution:
+	def sumOfLeftLeaves(self, root):
+		if not root:
+			return 0
+
+		l = self.sumOfLeftLeaves(root.left)
+		r = self.sumOfLeftLeaves(root.right)
+		s = l + r
+
+		if root.left and not (root.left.left or root.left.right):
+			s += root.left.val
+
+		return s
+
+class Solution:
+	def sumOfLeftLeaves(self, root):
 		if not root:
 			return 0
 
@@ -17,6 +49,7 @@ class Solution:
 				stack.append(node.right)
 
 		return s
+
 
 class Solution:
 	def sumOfLeftLeaves(self, root):
