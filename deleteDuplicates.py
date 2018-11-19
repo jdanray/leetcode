@@ -1,5 +1,11 @@
 # https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
 
+"""
+The solution to a problem instance is the given list without any duplicate numbers. So, for each number in the given list, include it in the solution iff it isn't a duplicate.
+
+The given list is sorted. In a sorted list, a number is a duplicate iff it's equal to the previous number or the next number. So, for each number in the given list, test whether it's equal to the previous number or the next number. If it is, then skip it; exclude it from the solution. If it isn't, then include it.
+"""
+
 class Solution:
 	def deleteDuplicates(self, head, prev=None):
 		"""
