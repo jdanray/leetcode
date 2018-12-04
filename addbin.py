@@ -32,8 +32,3 @@ class Solution:
 			s = '1' + s
 
 		return s
-
-a = '10110'
-b = '11'
-soln = Solution()
-print(soln.addBinary(a, b))
