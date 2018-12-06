@@ -1,4 +1,4 @@
-# https://leetcode.com/problems/linked-list-components/submissions/
+# https://leetcode.com/problems/linked-list-components/
 
 class Solution(object):
 	def numComponents(self, head, G):

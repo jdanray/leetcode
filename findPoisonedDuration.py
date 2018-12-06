@@ -1,4 +1,4 @@
-# https://leetcode.com/problems/teemo-attacking/submissions/
+# https://leetcode.com/problems/teemo-attacking/
 
 class Solution(object):
 	def findPoisonedDuration(self, timeSeries, duration):
