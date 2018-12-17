@@ -13,6 +13,16 @@ class Solution(object):
 
 class Solution(object):
 	def minCostClimbingStairs(self, cost):
+		A = cost[0]
+		B = cost[1]
+        
+		for i in range(2, len(cost)):
+			A, B = cost[i] + min(A, B), A
+            
+		return min(A, B)
+
+class Solution(object):
+	def minCostClimbingStairs(self, cost):
 		memo = {}
 
 		def helper(i):
