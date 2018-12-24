@@ -9,6 +9,5 @@ class Solution:
 				c += 1
 			else:
 				c = 0
-			if c > m:
-				m = c
+			m = max(m, c)
 		return m
