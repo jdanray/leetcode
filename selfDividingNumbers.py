@@ -12,4 +12,3 @@ class Solution:
 
 	def selfDividingNumbers(self, left, right):
 		return [num for num in range(left, right + 1) if self.divides(num)]
-		

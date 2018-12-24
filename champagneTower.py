@@ -13,4 +13,3 @@ class Solution:
 					nextrow[j + 1] += excess
 					row[j] = 1
 		return row[query_glass]
-

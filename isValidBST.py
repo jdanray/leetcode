@@ -16,6 +16,3 @@ class Solution:
 			return node.val > val and self.helper(node.left, val, op) and self.helper(node.right, val, op)
 		else:
 			return node.val < val and self.helper(node.left, val, op) and self.helper(node.right, val, op)
-
-	
-		

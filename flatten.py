@@ -1,19 +1,15 @@
-# https://leetcode.com/problems/flatten-nested-list-iterator/description/
+# https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/
 
-class NestedIterator(object):
-	def __init__(self, nestedList):
-		self.lst = []
-		self.flatten(nestedList)
-	
-	def flatten(self, nestedList):
-		for u in nestedList:
-			if u.isInteger():
-				self.lst.append(u.getInteger())
-			else:
-				self.flatten(u.getList())
-
-	def next(self):
-		return self.lst.pop(0)
-
-	def hasNext(self):
-		return len(self.lst) > 0
+class Solution:
+	def flatten(self, root):
+		prev = None
+		stack = [root]
+		while stack:
+			node = stack.pop()
+			if node:
+				stack.append(node.right)
+				stack.append(node.left)
+				node.left = None
+				if prev: 
+					prev.right = node
+				prev = node
