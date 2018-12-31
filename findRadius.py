@@ -1,4 +1,4 @@
-# https://leetcode.com/problems/heater/description/
+# https://leetcode.com/problems/heaters/description/
 
 class Solution:
 	def findRadius(self, houses, heaters):
