@@ -18,5 +18,3 @@ class Solution(object):
 				j -= 1
 			maxscore = max(maxscore, score)
 		return maxscore
-
-
