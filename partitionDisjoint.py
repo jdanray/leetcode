@@ -1,5 +1,18 @@
 # https://leetcode.com/problems/partition-array-into-disjoint-intervals/
 
+class Solution(object):
+	def partitionDisjoint(self, A):
+		m = A[0]
+		t = A[0]
+		l = 0
+		for i in range(1, len(A)):
+			if A[i] > m:
+				m = A[i]
+			if A[i] < t:
+				l = i
+				t = m
+		return l + 1
+
 class Solution:
 	def partitionDisjoint(self, A):
 		left = 1
