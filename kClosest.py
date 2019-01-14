@@ -1,4 +1,4 @@
-# https://leetcode.com/contest/weekly-contest-119/problems/k-closest-points-to-origin/
+# https://leetcode.com/problems/k-closest-points-to-origin/
 
 class Solution(object):
 	def kClosest(self, points, K):
