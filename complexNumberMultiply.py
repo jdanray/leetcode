@@ -4,6 +4,24 @@ class Solution:
 	def complexNumberMultiply(self, A, B):
 		def parse(M):
 			i = M.find('+')
+            
+			a = int(M[:i])
+			b = int(M[i + 1:-1])
+            
+			return (a, b) 
+
+		a, b = parse(A)
+		c, d = parse(B)
+        
+		e = a * c - b * d
+		f = b * c + a * d
+        
+		return str(e) + "+" + str(f) + "i"
+
+class Solution:
+	def complexNumberMultiply(self, A, B):
+		def parse(M):
+			i = M.find('+')
 			j = M.find('i')
 
 			a = int(M[:i])
