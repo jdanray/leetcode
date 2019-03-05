@@ -23,7 +23,7 @@ class Solution(object):
 		return mincost(0)
 
 # After I solve a problem, I like to study other people's solutions to the same problem.
-# The following is the top-voted solution, translated from Java into Python.
+# The following is the top-voted solution, translated by me from Java into Python.
 # Link to original: https://leetcode.com/problems/minimum-cost-for-tickets/discuss/226670/Java-DP-Solution-with-explanation-O(n)
 
 class Solution(object):
