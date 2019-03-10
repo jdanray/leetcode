@@ -2,6 +2,26 @@
 
 class Solution:
 	def minPathSum(self, grid):
+		M = len(grid)
+		N = len(grid[0])
+
+		memo = {}
+		def helper(i, j):
+			if (i, j) not in memo:
+				memo[(i, j)] = grid[i][j]
+				if i + 1 < M and j + 1 < N:
+					memo[(i, j)] += min(helper(i + 1, j), helper(i, j + 1))
+				elif i + 1 < M:
+					memo[(i, j)] += helper(i + 1, j)
+				elif j + 1 < N:
+					memo[(i, j)] += helper(i, j + 1)
+
+			return memo[(i, j)]
+
+		return helper(0, 0)
+
+class Solution:
+	def minPathSum(self, grid):
 		if not grid:
 			return 0
 
