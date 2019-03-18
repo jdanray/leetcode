@@ -2,12 +2,6 @@
 
 class Solution(object):
 	def intervalIntersection(self, A, B):
-		if not A or not B:
-			return []
-
-		if B[0].start < A[0].start:
-			A, B = B, A
-
 		i = 0
 		j = 0
 		res = []
@@ -16,7 +10,7 @@ class Solution(object):
 				inter = Interval(max(A[i].start, B[j].start), min(A[i].end, B[j].end))
 				res.append(inter)
 
-			if B[j].end > A[i].end:
+			if A[i].end < B[j].end:
 				i += 1
 			else:
 				j += 1
