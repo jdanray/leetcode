@@ -1,4 +1,4 @@
-# https://leetcode.com/interview/1/
+# https://leetcode.com/problems/unique-email-addresses/
 
 class Solution(object):
 	def numUniqueEmails(self, emails):
