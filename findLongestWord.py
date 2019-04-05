@@ -4,7 +4,7 @@ class Solution(object):
 	def findLongestWord(self, s, d):
 		longest = ''
 		for w in sorted(d):
-			if len(w) < len(longest) or len(w) < len(s):
+			if len(w) < len(longest) or len(w) > len(s):
 				continue
 
 			i = 0
