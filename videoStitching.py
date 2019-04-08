@@ -5,12 +5,11 @@ class Solution(object):
 		start = 0
 		n = 0
 		i = 0
-		clips = sorted(clips, key=lambda c: c[0])
+		clips = sorted(clips)
 		while i < len(clips) and start < T:
 			best = -1
 			while i < len(clips) and clips[i][0] <= start:
-				if clips[i][1] > best:
-					best = clips[i][1]
+				best = max(best, clips[i][1])
 				i += 1
 
 			if best == -1:
