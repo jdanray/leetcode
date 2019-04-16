@@ -2,6 +2,26 @@
 
 class Solution(object):
 	def rotateRight(self, head, k):
+		if not head:
+			return None
+
+		l = 1
+		tail = head
+		while tail.next:
+			tail = tail.next
+			l += 1
+
+		tail.next = head
+		for _ in range(l - (k % l)):
+			tail = tail.next
+
+		head = tail.next
+		tail.next = None
+
+		return head
+
+class Solution(object):
+	def rotateRight(self, head, k):
 		nums = []
 		node = head
 		while node:
