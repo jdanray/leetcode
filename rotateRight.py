@@ -8,6 +8,23 @@ class Solution(object):
 			nums.append(node.val)
 			node = node.next
 
+		node = head
+		i = 0
+		while node:
+			node.val = nums[(i - k) % len(nums)]
+			node = node.next
+			i += 1
+
+		return head
+
+class Solution(object):
+	def rotateRight(self, head, k):
+		nums = []
+		node = head
+		while node:
+			nums.append(node.val)
+			node = node.next
+
 		rot = [None] * len(nums)
 		for i, n in enumerate(nums):
 			j = (i + k) % len(nums)
