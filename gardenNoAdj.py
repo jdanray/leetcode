@@ -1,5 +1,24 @@
 # https://leetcode.com/problems/flower-planting-with-no-adjacent/
 
+# Somewhat simpler solution than the following one
+class Solution(object):
+	def gardenNoAdj(self, N, paths):
+		graph = collections.defaultdict(set)
+		for (u, v) in paths:
+			graph[u - 1].add(v - 1)
+			graph[v - 1].add(u - 1)
+
+		colors = list(range(1, 4 + 1))
+		soln = [-1 for _ in range(N)]
+		for u in range(N):
+			used = {soln[v] for v in graph[u]}
+			for col in colors:
+				if col not in used:
+					soln[u] = col
+					break
+
+		return soln
+
 class Solution(object):
 	def gardenNoAdj(self, N, paths):
 		graph = collections.defaultdict(set)
