@@ -19,4 +19,5 @@ class Solution(object):
 
 		tail[0].next = None
 		tail[1].next = evenhead
+
 		return head
