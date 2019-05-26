@@ -2,7 +2,8 @@
 
 class Solution(object):
 	def maxSatisfied(self, customers, grumpy, X):
-		cur = M = sum(c for i, c in enumerate(customers) if grumpy[i] == 0 or i < X)
+		cur = sum(c for i, c in enumerate(customers) if grumpy[i] == 0 or i < X)
+		M = cur
 		i = 0
 		for j in range(X, len(customers)):
 			if grumpy[j] == 1:
