@@ -26,7 +26,7 @@ class Solution(object):
 			dist = upper - label
 
 		path = []
-		while label > 1:
+		while label >= 1:
 			path = [label] + path
 
 			dist >>= 1
@@ -39,4 +39,4 @@ class Solution(object):
 			else:
 				label = upper - dist
 
-		return [1] + path
+		return path
