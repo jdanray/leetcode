@@ -12,9 +12,7 @@ The (not-so-great) difficulty lies in finding a given node's parent. To find a g
 class Solution(object):
 	def pathInZigZagTree(self, label):
 		row = 0
-		l = label
-		while l > 0:
-			l >>= 1
+		while (label >> row) > 0:
 			row += 1
 
 		lower = 2 ** (row - 1)
