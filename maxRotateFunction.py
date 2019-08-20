@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/rotate-function/
 
 """
-To get F0:		Sum A[0:N-1]
+To get F0:		Compute i*A[i], for i=0,1,...,N-1, and sum the products
 To get F1 from F0:	Subtract (N-1)*6, Add 4,3,2
 F1->F2:			Subtract (N-1)*2, Add 6,4,3
 F2->F3:			Subtract (N-1)*3, Add 2,6,4
