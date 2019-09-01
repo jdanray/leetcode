@@ -1,18 +1,30 @@
-# https://leetcode.com/problems/validate-binary-search-tree/description/
+# https://leetcode.com/problems/validate-binary-search-tree/ 
 
-class Solution:
+class Solution(object):
 	def isValidBST(self, root):
-		if not root:
-			return True
-		elif self.helper(root.left, root.val, 'lt') and self.helper(root.right, root.val, 'gt'):
-			return self.isValidBST(root.left) and self.isValidBST(root.right)
-		else:
-			return False
+		def inorder(root):
+			if not root:
+				return []
+			return inorder(root.left) + [root.val] + inorder(root.right)
 
-	def helper(self, node, val, op):
-		if not node:
-			return True
-		elif op == 'gt':
-			return node.val > val and self.helper(node.left, val, op) and self.helper(node.right, val, op)
-		else:
-			return node.val < val and self.helper(node.left, val, op) and self.helper(node.right, val, op)
+		tree = inorder(root)
+		return len(tree) < 2 or all(tree[i] < tree[i + 1] for i in range(len(tree) - 1))
+
+class Solution(object):
+	def isValidBST(self, root):
+		tree = []
+		stack = []
+		while root or stack:
+			while root:
+				stack.append(root)
+				if root.left and root.left.val >= root.val:
+					return False
+				root = root.left
+
+			root = stack.pop()
+			if root and root.right and root.right.val < root.val:
+				return False
+
+			root = root.right
+
+		return True 
