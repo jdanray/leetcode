@@ -12,8 +12,6 @@ class Solution:
 			queue and queue.append(queue.pop(0))
 		return res
 
-# https://leetcode.com/problems/reveal-cards-in-increasing-order/
-
 class Solution(object):
 	def deckRevealedIncreasing(self, deck):
 		deck = sorted(deck, reverse=True)
