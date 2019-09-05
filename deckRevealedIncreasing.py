@@ -1,4 +1,4 @@
-# https://leetcode.com/contest/weekly-contest-113/problems/reveal-cards-in-increasing-order/
+# https://leetcode.com/problems/reveal-cards-in-increasing-order/
 
 class Solution:
 	def deckRevealedIncreasing(self, deck):
@@ -10,4 +10,14 @@ class Solution:
 			j = queue.pop(0)
 			res[j] = deck[i]
 			queue and queue.append(queue.pop(0))
+		return res
+
+# https://leetcode.com/problems/reveal-cards-in-increasing-order/
+
+class Solution(object):
+	def deckRevealedIncreasing(self, deck):
+		deck = sorted(deck, reverse=True)
+		res = [deck[0]]
+		for card in deck[1:]:
+			res = [card] + [res[-1]] + res[:-1]
 		return res
