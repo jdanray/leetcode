@@ -10,3 +10,8 @@ class Solution(object):
 				return False
 		return True
 
+class Solution(object):
+	def checkStraightLine(self, coordinates):
+		x0, y0 = coordinates[0]
+		x1, y1 = coordinates[1]
+		return all((x2 - x0) * (y2 - y1) == (x2 - x1) * (y2 - y0) for x2, y2 in coordinates)
