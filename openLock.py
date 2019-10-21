@@ -34,3 +34,28 @@ class Solution(object):
 					queue.append([down, n + 1])
 
 		return -1
+
+class Solution(object):
+	def openLock(self, deadends, target):
+		start = "0000"
+		change = {str(n): [str((n - 1) % 10), str((n + 1) % 10)] for n in range(10)}
+		deadends = set(deadends)
+		seen = set()
+		queue = [[start, 0]]
+		while queue:
+			lock, nturns = queue.pop(0)
+
+			if lock in deadends:
+				continue
+
+			if lock == target:
+				return nturns
+
+			for i, l in enumerate(lock):
+				for c in change[l]:
+					newlock = lock[:i] + c + lock[i + 1:]
+					if newlock not in seen:
+						seen.add(newlock)
+						queue.append([newlock, nturns + 1])
+
+		return -1
