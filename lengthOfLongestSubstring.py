@@ -15,3 +15,16 @@ class Solution(object):
 				j += 1
 				longest = max(longest, j - i)
 		return longest
+
+class Solution(object):
+	def lengthOfLongestSubstring(self, s):
+		count = collections.defaultdict(int)
+		j = 0
+		res = 0
+		for i, c in enumerate(s):
+			count[c] += 1
+			while count[c] > 1:
+				count[s[j]] -= 1
+				j += 1
+			res = max(res, i - j + 1)
+		return res 
