@@ -1,5 +1,11 @@
 # https://leetcode.com/problems/ransom-note/description/
 
+class Solution(object):
+	def canConstruct(self, ransomNote, magazine):
+		countR = collections.Counter(ransomNote)
+		countM = collections.Counter(magazine)
+		return all(countR[l] <= countM[l] for l in countR)
+
 class Solution:
 	def canConstruct(self, ransomNote, magazine):
 		notect = dict()
