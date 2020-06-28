@@ -17,3 +17,42 @@ class Solution:
 					return True
 
 		return False
+
+class Solution(object):
+	def findTarget(self, root, k):
+		seen = set()
+		stack = [root]
+		while stack:
+			node = stack.pop()
+
+			if not node:
+				continue
+
+			if k - node.val in seen:
+				return True
+
+			seen.add(node.val)
+			stack.append(node.left)
+			stack.append(node.right)
+
+		return False	
+
+class Solution(object):
+	def findTarget(self, root, k):
+		nums = []
+		def inorder(node):
+			if node:
+				inorder(node.left)
+				nums.append(node.val)
+				inorder(node.right)
+
+		inorder(root)
+		i = 0
+		j = len(nums) - 1
+		while i < j and nums[i] + nums[j] != k:
+			if nums[i] + nums[j] > k:
+				j -= 1
+			else:
+				i += 1
+
+		return i != j and nums[i] + nums[j] == k
