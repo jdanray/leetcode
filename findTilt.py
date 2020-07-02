@@ -41,3 +41,20 @@ class Solution(object):
 
 		computeTilt(root)
 		return self.tilt
+
+"""
+Here is a variation of the above program that doesn't use any nonlocal variables:
+"""
+
+class Solution(object):
+	def findTilt(self, root):
+		def tilt(node):
+			if not node:
+				return (0, 0)
+
+			ls, lt = tilt(node.left)
+			rs, rt = tilt(node.right)
+			return (ls + rs + node.val, lt + rt + abs(ls - rs))
+
+		s, t = tilt(root)
+		return t
