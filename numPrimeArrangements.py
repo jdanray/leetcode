@@ -49,3 +49,36 @@ class Solution(object):
 
 	def numPrimeArrangements(self, n):
 		return 1 if n == 1 else self.mul(n, self.countPrimes(n))
+
+class Solution(object):
+	def numPrimeArrangements(self, n):
+		MOD = 10 ** 9 + 7
+
+		# sieve of eratosthenes
+		# compute all primes from 1 to n
+		isprime = [True for _ in range(n + 1)]
+		isprime[1] = False
+		i = 2
+		while i * i <= n:
+			for j in range(2, n // i + 1):
+				isprime[j * i] = False
+
+			i += 1
+			while not isprime[i]:
+				i += 1
+
+		# count the primes and composites
+		c = 0
+		p = 0
+		for i in range(1, n + 1):
+			if isprime[i]:
+				p += 1
+			else:
+				c += 1
+
+		# the number of valid arrangements is the factorial of c, times the factorial of p
+		# for the first prime index, there are p primes we could assign to that index 
+		# for the second prime index, there are (p - 1) primes available
+		# etc, etc
+		# the same goes for the composite indexes
+		return (factorial(c) * factorial(p)) % MOD
