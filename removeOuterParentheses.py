@@ -20,3 +20,18 @@ class Solution(object):
 			i += 1
 
 		return res
+
+class Solution(object):
+	def removeOuterParentheses(self, S):
+		opener = 0
+		res = ''
+		for c in S:
+			if c == '(':
+				opener += 1
+			else:
+				opener -= 1
+
+			if not (c == '(' and opener == 1) and not (c == ')' and opener == 0):
+				res += c
+
+		return res
