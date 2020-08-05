@@ -1,5 +1,21 @@
 # https://leetcode.com/problems/bulls-and-cows/description/ 
 
+class Solution(object):
+	def getHint(self, secret, guess):
+		cows = 0
+		gcount = collections.Counter(guess)
+		scount = collections.Counter(secret)
+		for g in gcount:
+			cows += min(gcount[g], scount[g])
+
+		bulls = 0
+		for i in range(len(secret)):
+			if secret[i] == guess[i]:
+				bulls += 1
+				cows -= 1
+
+		return "{}A{}B".format(bulls, cows)
+
 class Solution:
 	def getHint(self, secret, guess):
 		nseen = dict()
