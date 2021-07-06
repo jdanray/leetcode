@@ -14,3 +14,37 @@ class Solution:
 						if matrix[k][j] != 0:
 							matrix[k][j] = 0
 							changed.add((k, j))
+
+# I revisited this old problem and came up with an O(1)-space solution:
+
+class Solution(object):
+	def setZeroes(self, matrix):
+		INF = 2**32
+
+		M = len(matrix)
+		N = len(matrix[0])
+
+		def color(i, j):
+			matrix[i][j] = INF
+            
+			for k in range(M):
+				if matrix[k][j] == 0:
+					color(k, j)
+				else:
+					matrix[k][j] = INF
+
+			for k in range(N):
+				if matrix[i][k] == 0:
+					color(i, k)
+				else:
+					matrix[i][k] = INF
+
+		for i in range(M):
+			for j in range(N):
+				if matrix[i][j] == 0:
+					color(i, j)
+
+		for i in range(M):
+			for j in range(N):
+				if matrix[i][j] == INF:
+					matrix[i][j] = 0
