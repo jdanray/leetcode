@@ -14,3 +14,19 @@ class Solution:
 				ranks[ir] = str(i + 1)
 
 		return ranks
+
+# I came up with a (hopefully) more elegant solution:
+
+class Solution(object):
+	def findRelativeRanks(self, score):
+		place = ["Gold Medal", "Silver Medal", "Bronze Medal"]
+		rank = {s: i for i, s in enumerate(sorted(score, reverse=True))}
+
+		res = []
+		for s in score:
+			if rank[s] < len(place):
+				res.append(place[rank[s]])
+			else:
+				res.append(str(rank[s] + 1))
+
+		return res
