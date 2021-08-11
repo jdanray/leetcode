@@ -60,3 +60,28 @@ class Solution:
 				wait[i] = wait[j]
 
 		return [w - i for i, w in enumerate(wait)]
+
+"""
+In spite of my above analysis, there is a much more straightforward solution to the problem. 
+
+In fact, this is a classic monostack problem. 
+
+Here is the solution:
+"""
+
+class Solution(object):
+	def dailyTemperatures(self, temperatures):
+		N = len(temperatures)
+        
+		res = [0 for _ in range(N)]
+		stack = []
+		for i in range(N - 1, -1, -1):
+			while stack and temperatures[stack[-1]] <= temperatures[i]:
+				stack.pop()
+
+			if stack:
+				res[i] = stack[-1] - i
+ 
+			stack.append(i)
+
+		return res
