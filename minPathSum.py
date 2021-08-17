@@ -1,5 +1,23 @@
 # https://leetcode.com/problems/minimum-path-sum/
 
+class Solution(object):
+	def minPathSum(self, grid):
+		M = len(grid)
+		N = len(grid[0])
+
+		dp = [[0 for _ in range(N)] for _ in range(M)]
+		for i in range(M):
+			for j in range(N):
+				dp[i][j] = grid[i][j]
+				if i - 1 >= 0 and j - 1 >= 0:
+					dp[i][j] += min(dp[i - 1][j], dp[i][j - 1])
+				elif i - 1 >= 0:
+					dp[i][j] += dp[i - 1][j]
+				elif j - 1 >= 0:
+					dp[i][j] += dp[i][j - 1] 
+
+		return dp[M - 1][N - 1]
+
 class Solution:
 	def minPathSum(self, grid):
 		M = len(grid)
