@@ -23,22 +23,25 @@ class Solution:
 
 		return indices
 
-class Solution(object):
+class Solution:
 	def findAnagrams(self, s, p):
+		N = len(p)
+
 		countAnagram = collections.Counter(p)
 		countChars = collections.Counter()
-		i = 0
+
 		res = []
-		for j, c in enumerate(s):
+		# Invariant: countChars stores the char count for s[i-len(p)+1..i], for 0 <= i < len(s)
+		for i, c in enumerate(s):
 			countChars[c] += 1
 
-			while any(countChars[x] > countAnagram[x] for x in countChars):
-				countChars[s[i]] -= 1
-				if countChars[s[i]] == 0: 
-					del countChars[s[i]]
-				i += 1
+			if i >= N:
+				first = s[i - N]
+				countChars[first] -= 1
+				if countChars[first] == 0:
+					del countChars[first]
 
 			if countChars == countAnagram:
-				res.append(i)
+				res.append(i - N + 1)
 
 		return res
