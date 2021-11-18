@@ -9,3 +9,20 @@ class Solution(object):
 			s += nums[i]
 			M = max(M, s)
 		return M / k
+
+class Solution(object):
+	def findMaxAverage(self, nums, k):
+		i = 0
+		s = 0.0
+		res = float('-inf')
+		for j, n in enumerate(nums):
+			s += n
+
+			if j >= k:
+				s -= nums[i]
+				i += 1
+
+			if j - i + 1 == k:
+				res = max(res, s)
+
+		return res / k
