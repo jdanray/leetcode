@@ -29,10 +29,10 @@ class Solution(object):
 		pq = []
 		heapq.heapify(pq)
 		for i, u in enumerate(points):
-			for j, v in enumerate(points):
-				if i != j:
-					d = abs(u[0] - v[0]) + abs(u[1] - v[1])
-					heapq.heappush(pq, (d, i, j))
+			for j in range(i + 1, N):
+				v = points[j]
+				d = abs(u[0] - v[0]) + abs(u[1] - v[1])
+				heapq.heappush(pq, (d, i, j))
 
 		uf = DisjointSet(N)
 		connected = 0
