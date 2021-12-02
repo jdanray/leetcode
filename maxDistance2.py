@@ -25,8 +25,8 @@ class Solution(object):
 		while second < N and colors[second] == colors[first]:
 			second += 1
 
-		res = second - first
-		for i in range(second + 1, N):
+		res = 0
+		for i in range(second, N):
 			if colors[i] == colors[first]:
 				res = max(res, i - second)
 			else:
