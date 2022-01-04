@@ -14,3 +14,17 @@ class Solution(object):
 				n += 1
 
 		return n
+
+# A simpler solution
+
+class Solution(object):
+	def findMinArrowShots(self, points):
+		last = None
+		res = 0
+		points = sorted(points, key=lambda p: p[1])
+		for p in points:
+			if last == None or last < p[0]:
+				res += 1
+				last = p[1]
+
+		return res
