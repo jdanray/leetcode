@@ -1,5 +1,25 @@
 # https://leetcode.com/problems/permutation-in-string/
 
+class Solution(object):
+	def checkInclusion(self, s1, s2):
+		count1 = collections.Counter(s1)
+		count2 = collections.Counter()
+		i = 0
+		n = len(s1)
+		for j, c in enumerate(s2):
+			count2[c] += 1
+			n -= 1
+
+			while count2[c] > count1[c]:
+				count2[s2[i]] -= 1
+				n += 1
+				i += 1
+
+			if n == 0: 
+				return True
+
+		return False
+
 from collections import Counter
 
 class Solution:
