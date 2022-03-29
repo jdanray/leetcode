@@ -1,14 +1,10 @@
-# https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
+# https://leetcode.com/problems/best-time-to-buy-and-sell-stock/ 
 
-class Solution:
-	def maxProfit(self, prices, fee):
-		if len(prices) < 2:
-			return 0
-
-		hold = -prices[0]
-		sold = 0
-		for p in prices:
-			hold = max(hold, sold - p)
-			sold = max(sold, hold + p - fee)
-
-		return sold
+class Solution(object):
+	def maxProfit(self, prices):
+		m = prices[0]
+		res = 0
+		for i in range(1, len(prices)):
+			m = min(m, prices[i])
+			res = max(res, prices[i] - m)
+		return res
