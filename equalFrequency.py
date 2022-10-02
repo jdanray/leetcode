@@ -3,10 +3,11 @@
 class Solution(object):
 	def equalFrequency(self, word):
 		count = collections.Counter(word)
-		for l in word:
-			count[l] -= 1
-			if len(count.values()) == 1:
+		for c in word:
+			count[c] -= 1
+			l = len(set(count.values()))
+			if l == 1 or (l == 2 and count[c] == 0):
 				return True
-			count[l] += 1
-
+			count[c] += 1
+            
 		return False
