@@ -1,10 +1,11 @@
-# https://leetcode.com/problems/add-one-row-to-tree/description/
+# https://leetcode.com/problems/add-one-row-to-tree/
 
 class Solution(object):
 	def addOneRow(self, root, v, d):
 		if not root:
 			return None
-		elif d == 1:
+
+		if d == 1:
 			newroot = TreeNode(v)
 			newroot.left = root
 			root = newroot
@@ -15,6 +16,8 @@ class Solution(object):
 			r.right = root.right
 			root.left = l
 			root.right = r
+
 		self.addOneRow(root.left, v, d - 1)
 		self.addOneRow(root.right, v, d - 1)
+
 		return root
