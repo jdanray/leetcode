@@ -2,6 +2,15 @@
 
 class Solution(object):
 	def maximum69Number(self, num):
+		n = str(num)
+		for i, d in enumerate(n):
+			if d == '6':
+				return int(n[:i] + '9' + n[i + 1:])
+
+		return num 
+
+class Solution(object):
+	def maximum69Number(self, num):
 		num = str(num)
 		res = ''
 		noflip = True
