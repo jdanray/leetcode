@@ -3,14 +3,11 @@
 class Solution(object):
 	def partitionArray(self, nums, k):
 		nums = sorted(nums)
-		mn = -1
 		res = 1
+		mn = nums[0]
 		for n in nums:
-			if mn == -1:
-				mn = n
-
 			if n - mn > k:
-				mn = n
 				res += 1
+				mn = n
 
 		return res
