@@ -11,3 +11,15 @@ class Solution(object):
 		b = s[N//2:]
 
 		return nvowels(a) == nvowels(b)
+
+class Solution(object):
+	def halvesAreAlike(self, s):
+		vowels = set('aeiouAEIOU')
+		M = len(s) // 2
+
+		count = [0, 0]
+		for i, c in enumerate(s):
+			if c in vowels:
+				count[i >= M] += 1
+
+		return count[0] == count[1]
