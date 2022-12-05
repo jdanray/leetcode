@@ -7,6 +7,17 @@ class Solution(object):
 		while h:
 			n += 1
 			h = h.next
+
 		for _ in range(n // 2):
 			head = head.next
+
 		return head
+
+class Solution(object):
+	def middleNode(self, head):
+		slow = head
+		fast = head
+		while fast and fast.next:
+			fast = fast.next.next
+			slow = slow.next
+		return slow
