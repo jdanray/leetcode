@@ -1,24 +1,38 @@
-# https://leetcode.com/problems/house-robber-iii/
+# https://leetcode.com/problems/house-robber/ 
 
 class Solution(object):
-	def rob(self, root):
-		memo = dict()
-        
-		def helper(root):
-			if not root:
-				return 0
+	def rob(self, nums):
+		memo = {}
+		def dp(i):
+			if i >= len(nums):
+				return 0            
+			elif i not in memo:
+				memo[i] = max(dp(i + 1), nums[i] + dp(i + 2))
+			return memo[i]
 
-			if root in memo:
-				return memo[root]
+		return dp(0)
 
-			x = helper(root.left) + helper(root.right)
-			y = root.val
-			if root.left:
-				y += helper(root.left.left) + helper(root.left.right)
-			if root.right:
-				y += helper(root.right.left) + helper(root.right.right)
-		
-			memo[root] = max(x, y)
-			return memo[root]
+class Solution(object):
+	def rob(self, nums):
+		N = len(nums)
+
+		dp = [0 for _ in range(N)]
+		dp[0] = nums[0]
+		for i in range(1, N):
+			if i - 2 >= 0:
+				dp[i] = max(dp[i - 1], nums[i] + dp[i - 2])
+			else:
+				dp[i] = max(dp[i - 1], nums[i])
+
+		return dp[N - 1]
+
+class Solution(object):
+	def rob(self, nums):
+		N = len(nums)
         
-		return helper(root)
+		dp1 = nums[0]
+		dp2 = 0
+		for i in range(1, N):
+			dp1, dp2 = max(dp1, nums[i] + dp2), dp1
+
+		return dp1
