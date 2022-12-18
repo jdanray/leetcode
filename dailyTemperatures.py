@@ -85,3 +85,18 @@ class Solution(object):
 			stack.append(i)
 
 		return res
+
+# There is an even better stack solution:
+
+class Solution(object):
+	def dailyTemperatures(self, temps):
+		res = [0 for _ in range(len(temps))]
+		stack = []
+		for i, t in enumerate(temps):
+			while stack and t > temps[stack[-1]]:
+				j = stack.pop()
+				res[j] = i - j
+                
+			stack.append(i)
+            
+		return res 
