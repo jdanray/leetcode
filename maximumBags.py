@@ -29,9 +29,6 @@ class Solution(object):
 		for n in needed:
 			if additionalRocks >= n:
 				additionalRocks -= n
-				n = 0
-
-			if n == 0:
 				res += 1
 
 		return res
