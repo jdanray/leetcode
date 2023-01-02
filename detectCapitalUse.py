@@ -21,3 +21,20 @@ class Solution:
 			return True
 		else:
 			return False
+
+class Solution(object):
+	def detectCapitalUse(self, word):
+		return word.isupper() or word.islower() or (word[0].isupper() and word[1:].islower())
+
+class Solution(object):
+	def detectCapitalUse(self, word):
+		upper = string.ascii_uppercase
+		lower = string.ascii_lowercase
+
+		def isUpper(word):
+			return all(c in upper for c in word)
+
+		def isLower(word):
+			return all(c in lower for c in word)
+
+		return isUpper(word) or isLower(word) or (isUpper(word[0]) and isLower(word[1:]))
