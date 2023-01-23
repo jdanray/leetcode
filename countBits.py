@@ -41,3 +41,12 @@ class Solution:
 			p += 1
 
 		return B
+
+# I thought of a much simpler solution:
+
+class Solution(object):
+	def countBits(self, n):
+		res = [0 for _ in range(n + 1)]
+		for i in range(1, n + 1):
+			res[i] = res[i // 2] + (i % 2)
+		return res
