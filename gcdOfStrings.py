@@ -45,3 +45,19 @@ class Solution:
 		div2 = self.dividers(str2)
 		same = div1 & div2
 		return max(same, key=len) if same else ""
+
+# Simpler solution
+
+class Solution(object):
+	def gcdOfStrings(self, str1, str2):
+		def divides(t, s):
+			return t * (len(s) // len(t)) == s
+
+		t = ''
+		res = ''
+		for c in str1:
+			t += c
+			if divides(t, str1) and divides(t, str2):
+				res = t
+
+		return res
