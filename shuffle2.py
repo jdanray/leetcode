@@ -14,3 +14,12 @@ class Solution(object):
 			k += 2
 
 		return res
+
+class Solution(object):
+	def shuffle(self, nums, n):
+		res = [0] * (2 * n)
+		for i in range(n):
+			res[2 * i] = nums[i]
+			res[2 * i + 1] = nums[n + i]
+
+		return res
