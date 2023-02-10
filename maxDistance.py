@@ -3,10 +3,10 @@
 class Solution(object):
 	def maxDistance(self, grid):
 		N = len(grid)
-		maxnum = float('inf')
-		dist = {(i, j): maxnum for i in range(N) for j in range(N)}
-		seen = set()
-		queue = []
+		deltas = [(1, 0), (-1, 0), (0, 1), (0, -1)] 
+
+		queue = collections.deque([])
+		dist = {(i, j): float('inf') for i in range(N) for j in range(N)}
 		for i in range(N): 
 			for j in range(N): 
 				if grid[i][j] == 1:
@@ -14,10 +14,14 @@ class Solution(object):
 					dist[i, j] = 0
 
 		res = -1
+		seen = set()
 		while queue:
-			i, j = queue.pop(0)
+			i, j = queue.popleft()
 
-			for k, l in [(i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)]:
+			for (di, dj) in deltas: 
+				k = i + di
+				l = j + dj
+                
 				if k < 0 or k >= N or l < 0 or l >= N or grid[k][l] != 0:
 					continue
 
