@@ -2,45 +2,34 @@
 
 class Solution(object):
 	def shortestAlternatingPaths(self, n, red_edges, blue_edges):
-		ans = [-1 for _ in range(n)]
-		
-		reds = collections.defaultdict(set)
+		graphRed = collections.defaultdict(set)
 		for u, v in red_edges:
-			reds[u].add(v)
+			graphRed[u].add(v)
 
-		blues = collections.defaultdict(set)
+		graphBlue = collections.defaultdict(set)
 		for u, v in blue_edges:
-			blues[u].add(v)
+			graphBlue[u].add(v)
 
-		usedred = set()
-		usedblue = set()
+		seenRed = set()
+		seenBlue = set()
 		queue = [[0, -1, 0]]
+		res = [-1] * n
 		while queue:
-			vertex, prev, path = queue.pop(0)
+			vertex, prev, plen = queue.pop(0)
 
-			if ans[vertex] == -1 or path < ans[vertex]:
-				ans[vertex] = path
+			if res[vertex] == -1:
+				res[vertex] = plen
 
-			if prev == -1:
-				for u in blues[vertex]:
-					if (u, v) not in usedblue:
-						queue.append([u, 1, path + 1])
-						usedblue.add((u, v))
-				for u in reds[vertex]:
-					if (u, v) not in usedred:
-						queue.append([u, 0, path + 1])				
-						usedred.add((u, v))
+			if prev == 0 or prev == -1:
+				for u in graphBlue[vertex]:
+					if (u, v) not in seenBlue:
+						queue.append([u, 1, plen + 1])
+						seenBlue.add((u, v))
 
-			if prev == 0:
-				for u in blues[vertex]:
-					if (u, v) not in usedblue:
-						queue.append([u, 1, path + 1])
-						usedblue.add((u, v))
-
-			if prev == 1:
-				for u in reds[vertex]:
-					if (u, v) not in usedred:
-						queue.append([u, 0, path + 1])
-						usedred.add((u, v))
+			if prev == 1 or prev == -1:
+				for u in graphRed[vertex]:
+					if (u, v) not in seenRed:
+						queue.append([u, 0, plen + 1])
+						seenRed.add((u, v))
 			
-		return ans
+		return res
