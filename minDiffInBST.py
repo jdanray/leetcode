@@ -1,27 +1,19 @@
-# https://leetcode.com/problems/minimum-distance-between-bst-nodes/
+# https://leetcode.com/problems/minimum-distance-between-bst-nodes/ 
 
 class Solution(object):
 	def minDiffInBST(self, root):
-		allnodes = []
+		nodes = []
 		stack = [root]
 		while stack:
-			node = stack.pop()
+			u = stack.pop()
+			if u:
+				nodes.append(u.val)
+				stack.append(u.left)
+				stack.append(u.right)
 
-			if not node:
-				continue
-		
-			allnodes.append(node.val)
-
-			stack.append(node.left)
-			stack.append(node.right)
-
-		allnodes = sorted(allnodes)
-		m = None
-		for i in range(1, len(allnodes)):
-			d = allnodes[i] - allnodes[i - 1]
-			if m == None:
-				m = d
-			else:
-				m = min(m, d)
-
-		return m
+		nodes = sorted(nodes)
+		res = float('inf')
+		for i in range(1, len(nodes)):
+			res = min(res, nodes[i] - nodes[i - 1])
+            
+		return res
