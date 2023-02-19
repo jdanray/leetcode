@@ -33,3 +33,31 @@ class Solution(object):
 
 		result.append(rank)
 		return result
+
+class Solution(object):
+	def zigzagLevelOrder(self, root):
+		if not root:
+			return []
+
+		res = []
+		zig = True
+		queue = collections.deque([root])
+		while queue:
+			rank = []
+			for _ in range(len(queue)):
+				node = queue.popleft()
+
+				if zig:
+					rank += [node.val]
+				else:
+					rank = [node.val] + rank
+
+				if node.left: 
+					queue.append(node.left)
+				if node.right: 
+					queue.append(node.right)
+
+			res.append(rank)
+			zig = not zig
+
+		return res
