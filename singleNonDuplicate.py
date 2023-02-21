@@ -15,3 +15,23 @@ class Solution(object):
 				hi = mid
 
 		return nums[lo]
+
+class Solution(object):
+	def singleNonDuplicate(self, nums):
+		def condition(value):
+			if value % 2 == 0:
+				return nums[value] != nums[value + 1]
+			else:
+				return nums[value] != nums[value - 1]
+
+		left = 0
+		right = len(nums) - 1
+		while left < right:
+			mid = left + (right - left) // 2
+            
+			if condition(mid):
+				right = mid
+			else:
+				left = mid + 1
+
+		return nums[left]
