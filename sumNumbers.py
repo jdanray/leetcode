@@ -25,3 +25,24 @@ class Solution:
 				stack.append([node.right, [node.right.val] + digits])
 
 		return total
+
+class Solution(object):
+	def sumNumbers(self, root):
+		res = 0
+		stack = [[root, 0]]
+		while stack:
+			node, num = stack.pop()
+
+			if not node:
+				continue
+
+			num *= 10
+			num += node.val
+
+			if not node.left and not node.right:
+				res += num
+
+			stack.append([node.left, num])
+			stack.append([node.right, num])
+
+		return res
