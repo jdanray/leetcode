@@ -34,3 +34,36 @@ class Solution(object):
 				queue.append([node.right, 1 + label * 2, lvl + 1])
 
 		return True
+
+class Solution(object):
+	def isCompleteTree(self, root):
+		queue = collections.deque([root])
+		full = 1
+		while queue:
+			lastLevel = True
+			seenNull = False
+			count = 0
+			for _ in range(len(queue)):
+				node = queue.popleft()
+
+				if not node:
+					seenNull = True
+					continue
+
+				if seenNull:
+					return False
+
+				count += 1
+                
+				if node.left or node.right:
+					lastLevel = False
+
+				queue.append(node.left)
+				queue.append(node.right)
+
+			if not lastLevel and count != full:
+				return False
+
+			full *= 2
+
+		return True
