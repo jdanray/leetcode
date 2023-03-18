@@ -28,3 +28,23 @@ class BrowserHistory(object):
 			steps -= 1
 
 		return self.cur.val
+
+# Simpler solution: 
+
+class BrowserHistory(object):
+	def __init__(self, homepage):
+		self.history = [homepage]
+		self.loc = 0
+
+	def visit(self, url):
+		self.loc += 1
+		self.history = self.history[:self.loc]
+		self.history.append(url)
+
+	def back(self, steps):
+		self.loc = max(0, self.loc - steps)
+		return self.history[self.loc]
+
+	def forward(self, steps):
+		self.loc = min(len(self.history) - 1, self.loc + steps)
+		return self.history[self.loc]
