@@ -5,11 +5,9 @@ class Solution(object):
 		fakeHead = ListNode(-1)
 		fakeHead.next = head
 		node = fakeHead
-		while node:
-			nxt = node.next
-			while nxt and nxt.val == val:
-				nxt = nxt.next
-			node.next = nxt
+		while node: 
+			while node.next and node.next.val == val:
+				node.next = node.next.next
 			node = node.next
 
 		return fakeHead.next
