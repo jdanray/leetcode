@@ -2,6 +2,17 @@
 
 class Solution(object):
 	def removeStars(self, s):
+		stack = []
+		for c in s:
+			if c == '*':
+				stack.pop()
+			else:
+				stack.append(c)
+
+		return ''.join(stack)
+
+class Solution(object):
+	def removeStars(self, s):
 		remove = set()
 		n = 0
 		for i in range(len(s) - 1, -1, -1):
