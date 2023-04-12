@@ -2,22 +2,20 @@
 
 class Solution:
 	def simplifyPath(self, path):
-		dirs = []
+		stack = []
 		i = 0
 		while i < len(path):
-			while i < len(path) and path[i] == '/':
-				i += 1
-
 			d = ''
 			while i < len(path) and path[i] != '/':
 				d += path[i]
 				i += 1
 
 			if d == '..':
-				if dirs:
-					dirs.pop()
+				if stack:
+					stack.pop()
 			elif d and d != '.':
-				dirs.append(d)
+				stack.append(d)
 
-		if not dirs: return '/'
-		else: return ''.join('/' + d for d in dirs)
+			i += 1
+
+		return '/' + '/'.join(stack)
