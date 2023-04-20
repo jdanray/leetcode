@@ -67,3 +67,30 @@ class Solution:
 			queue.append((lvl + 1, childpos, node.right))
 		
 		return maxwidth
+
+# New solution
+# Don't need to keep track of the current level
+
+class Solution(object):
+	def widthOfBinaryTree(self, root):
+		queue = collections.deque([[root, 1]])
+		res = 0
+		while queue:
+			left = -1
+			right = -1
+			for _ in range(len(queue)):
+				node, pos = queue.popleft()
+
+				if not node:
+					continue
+
+				if left == -1:
+					left = pos
+				right = pos
+
+				queue.append([node.left, pos * 2])
+				queue.append([node.right, pos * 2 + 1])
+
+			res = max(res, right - left + 1)
+
+		return res
