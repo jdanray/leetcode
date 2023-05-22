@@ -1,23 +1,19 @@
-# https://leetcode.com/problems/top-k-frequent-elements/description/
+# https://leetcode.com/problems/top-k-frequent-elements/ 
 
 class Solution(object):
 	def topKFrequent(self, nums, k):
-		f = dict()
-		for n in nums:
-			if n not in f:
-				f[n] = 0
-			f[n] += 1
-		
-		m = max(f[n] for n in f)
-		a = [[] for _ in range(m + 1)]
-		for n in f:
-			a[f[n]].append(n)
+		freq = collections.Counter(nums)
 
-		r = []
+		m = max(freq.values())
+		a = [[] for _ in range(m + 1)]
+		for n in freq:
+			a[freq[n]].append(n)
+
+		res = []
 		for i in range(m, 0, -1):
 			j = 0
-			while j < len(a[i]) and len(r) < k:
-				r.append(a[i][j])
+			while j < len(a[i]) and len(res) < k:
+				res.append(a[i][j])
 				j += 1
 
-		return r
+		return res
