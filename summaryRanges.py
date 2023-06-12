@@ -10,3 +10,14 @@ class Solution(object):
 			else:
 				res.append(str(n))
 		return res
+
+class Solution(object):
+	def summaryRanges(self, nums):
+		ranges = []
+		for i, n in enumerate(nums):
+			if i > 0 and nums[i - 1] == n - 1:
+				ranges[-1][-1] = n
+			else:
+				ranges.append([n, n])
+
+		return [str(u) if u == v else str(u) + '->' + str(v) for (u, v) in ranges]
