@@ -29,4 +29,30 @@ class Solution(object):
 		if cursum > maxsum:
 			maxlevel = curlevel
 
-		return maxlevel 
+		return maxlevel
+
+class Solution(object):
+	def maxLevelSum(self, root):
+		level = 1
+		res = 1
+		maxSum = -float('inf')
+		queue = collections.deque([root])
+		while queue:
+			s = 0
+			for _ in range(len(queue)):
+				node = queue.popleft()
+
+				s += node.val
+
+				if node.left: 
+					queue.append(node.left)
+				if node.right: 
+					queue.append(node.right)
+
+			if s > maxSum:
+				maxSum = s
+				res = level
+
+			level += 1
+
+		return res
