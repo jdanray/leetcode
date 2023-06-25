@@ -1,6 +1,22 @@
 # https://leetcode.com/problems/count-all-possible-routes/  
 
 class Solution(object):
+	def countRoutes(self, locs, start, finish, fuel):
+		MOD = 10**9 + 7
+
+		@functools.lru_cache(None)
+		def dp(cur, fuel):
+			res = int(cur == finish)
+			for dest in range(len(locs)):
+				cost = abs(locs[cur] - locs[dest])
+				if dest != cur and cost <= fuel:
+					res += dp(dest, fuel - cost)
+
+			return res
+
+		return dp(start, fuel) % MOD
+
+class Solution(object):
 	def countRoutes(self, locations, start, finish, fuel):
 		MOD = 10**9 + 7
 		N = len(locations)
