@@ -2,6 +2,27 @@
 
 class Solution(object):
 	def minDepth(self, root):
+		queue = collections.deque([root])
+		depth = 0
+		while queue:
+			depth += 1
+            
+			for _ in range(len(queue)):
+				node = queue.popleft()
+
+				if not node:
+					continue
+
+				if not node.left and not node.right:
+					return depth
+
+				queue.append(node.left)
+				queue.append(node.right)
+
+		return 0
+
+class Solution(object):
+	def minDepth(self, root):
 		queue = collections.deque([[root, 1]])
 		while queue:
 			u, d = queue.popleft()
