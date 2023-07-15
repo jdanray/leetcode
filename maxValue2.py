@@ -14,9 +14,7 @@ class Solution(object):
 				return memo[i, k]
 
 			j = i + 1
-			while j < N:
-				if events[j][0] > events[i][1]:
-					break
+			while j < N and events[j][0] <= events[i][1]:
 				j += 1
 
 			memo[i, k] = max(dp(i + 1, k), events[i][2] + dp(j, k - 1))
