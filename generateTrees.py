@@ -5,8 +5,6 @@ class Solution(object):
 		def generate(l, r):
 			if l > r:
 				return [None]
-			elif l == r:
-				return [TreeNode(l)]
 
 			res = []
 			for val in range(l, r + 1):
