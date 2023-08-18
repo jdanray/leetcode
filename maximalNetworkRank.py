@@ -7,7 +7,7 @@ class Solution(object):
 		for (u, v) in roads:
 			count[u] += 1
 			count[v] += 1
-			connected.add((min(x, y), max(x, y))
+			connected.add((min(u, v), max(u, v)))
 
 		res = 0
 		for u in range(n):
