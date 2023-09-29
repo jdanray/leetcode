@@ -1,41 +1,28 @@
-# https://leetcode.com/contest/weekly-contest-100/problems/monotonic-array/
+# https://leetcode.com/problems/monotonic-array/
 
 class Solution(object):
-    def isMonotonic(self, A):
-        # base case
-        if len(A) == 1:
-            return True
-        
-        # a monotonic array is either monotonic increasing or monotonic decreasing
-        # so, we will tag it as increasing or decreasing
-        # but we can't decide until we see a number different from the first number
-        
-        i = 1
-        while i < len(A) and A[i] == A[i - 1]:
-            i += 1
-    
-        # after the while loop,
-        # i >= len(A) or A[i] != A[i - 1]
-        
-        if i >= len(A):
-            return True
-        
-        # A[i] != A[i - 1]
-        # so, A[i] > A[i - 1] or A[i] < A[i - 1]
-        
-        inc = False
-        dec = False
-        if A[i] > A[i - 1]:
-            inc = True
-        else:
-            dec = True
-            
-        # check whether the array remains monotonic
-        
-        for j in range(i + 1, len(A)):
-            if A[j] < A[j - 1] and inc:
-                return False
-            elif A[j] > A[j - 1] and dec:
-                return False
-            
-        return True
+	def isMonotonic(self, nums):
+		return all(nums[i] <= nums[i + 1] for i in range(len(nums) - 1)) or all(nums[i] >= nums[i + 1] for i in range(len(nums) - 1))
+
+class Solution(object):
+	def isMonotonic(self, nums):
+		if all(nums[i] <= nums[i + 1] for i in range(len(nums) - 1)):
+			return True
+		elif all(nums[i] >= nums[i + 1] for i in range(len(nums) - 1)):
+			return True
+		else:
+			return False
+
+class Solution(object):
+	def isMonotonic(self, nums):
+		N = len(nums)
+		inc = 0
+		dec = 0
+		for i in range(N - 1):
+			if nums[i] <= nums[i + 1]:
+				inc += 1
+
+			if nums[i] >= nums[i + 1]:
+				dec += 1
+
+		return inc == N - 1 or dec == N - 1	
