@@ -1,12 +1,16 @@
 # https://leetcode.com/problems/pascals-triangle-ii/description/
 
-class Solution:
-	def getRow(self, n):
-		if n < 0:
-			return []
-		elif n == 0:
-			return [1]
-		row = [1, 1]
-		for _ in range(n - 1):
-			row = [1] + [row[j - 1] + row[j] for j in range(1, len(row))] + [1]
+class Solution(object):
+	def getRow(self, rowIndex):
+		row = [1]
+		for _ in range(rowIndex):
+			row = [1] + [row[i] + row[i + 1] for i in range(len(row) - 1)] + [1]            
 		return row
+
+class Solution(object):
+	def getRow(self, rowIndex):
+		if rowIndex == 0:
+			return [1]
+
+		prev = self.getRow(rowIndex - 1)
+		return [1] + [prev[i] + prev[i + 1] for i in range(len(prev) - 1)] + [1]
