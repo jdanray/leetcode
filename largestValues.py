@@ -1,4 +1,26 @@
-# https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/
+# https://leetcode.com/problems/find-largest-value-in-each-tree-row/
+
+class Solution(object):
+	def largestValues(self, root):
+		if not root:
+			return []
+
+		queue = [root]
+		res = []
+		while queue:
+			maxim = float('-inf')
+			for _ in range(len(queue)):
+				node = queue.pop(0)
+				maxim = max(maxim, node.val)
+
+				if node.left:
+					queue.append(node.left)
+				if node.right:
+					queue.append(node.right)
+
+			res.append(maxim)
+
+		return res
 
 class Solution(object):
 	def largestValues(self, root):
@@ -29,15 +51,20 @@ class Solution:
 	def largestValues(self, root):
 		if not root:
 			return []
-		queue = [(0, root)]
+
 		values = []
+		queue = [(0, root)]
 		while queue:
 			level, node = queue.pop(0)
+
 			while level >= len(values):
 				values.append([])
+
 			values[level].append(node.val)
+
 			if node.left:
 				queue.append([level + 1, node.left])
 			if node.right:
 				queue.append([level + 1, node.right])
+
 		return [max(v) for v in values]	
