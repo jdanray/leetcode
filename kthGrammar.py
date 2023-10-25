@@ -8,3 +8,18 @@ class Solution:
 			kth = grammar[kth][K % 2]
 			K = (K + 1) // 2
 		return kth
+
+class Solution(object):
+	def kthGrammar(self, n, k):
+		if n == 1:
+			return 0
+
+		pre = self.kthGrammar(n - 1, (k - 1) // 2 + 1)
+		if pre == 0:
+			return 1 - (k % 2)
+		else:
+			return k % 2
+
+class Solution(object):
+	def kthGrammar(self, n, k):
+		return 0 if n == 1 else [1 - (k % 2), k % 2][self.kthGrammar(n - 1, (k - 1) // 2 + 1)]
