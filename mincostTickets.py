@@ -40,3 +40,29 @@ class Solution(object):
 				c = costs[2] + mincost[max(d - 30, 0)]
 				mincost[d] = min(a, b, c)
 		return mincost[365]
+
+# Another top-down solution 
+class Solution(object):
+	def mincostTickets(self, days, costs):
+		passes = [1, 7, 30]
+
+		memo = {}
+		def dp(i):
+			if i >= len(days):
+				return 0
+
+			if i in memo:
+				return memo[i]
+
+			res = float('inf')
+			for j, p in enumerate(passes):
+				k = i + 1
+				while k < len(days) and days[k] < days[i] + p:
+					k += 1
+
+				res = min(res, costs[j] + dp(k))
+
+			memo[i] = res
+			return memo[i]
+
+		return dp(0)
