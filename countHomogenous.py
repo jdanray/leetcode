@@ -1,5 +1,19 @@
 # https://leetcode.com/problems/count-number-of-homogenous-substrings/
 
+# sliding window (faster) 
+class Solution(object):
+	def countHomogenous(self, s):
+		MOD = 10**9 + 7
+		i = 0
+		res = 0
+		for j, c in enumerate(s):
+			if s[i] != c:
+				i = j
+
+			res += (j - i + 1)
+
+		return res % MOD
+
 # sliding window 
 class Solution(object):
 	def countHomogenous(self, s):
