@@ -1,24 +1,18 @@
 # https://leetcode.com/problems/count-number-of-homogenous-substrings/
 
-"""
-N=1
-'a' appears once
+# sliding window 
+class Solution(object):
+	def countHomogenous(self, s):
+		MOD = 10**9 + 7
+		i = 0
+		res = 0
+		for j, c in enumerate(s):
+			while s[i] != c:
+				i += 1
 
-N=2
-'a' appears twice
-'aa' appears once
+			res += (j - i + 1)
 
-N=3
-'a' appears thrice
-'aa' appears twice
-'aaa' appears once
-
-N=4
-'a' appears four times
-'aa' appears three times
-'aaa' appears twice 
-'aaaa' appears once
-"""
+		return res % MOD
 
 class Solution(object):
 	def countHomogenous(self, s):
