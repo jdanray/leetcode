@@ -2,6 +2,32 @@
 
 class Solution(object):
 	def restoreArray(self, adjacentPairs):
+		graph = collections.defaultdict(set)
+		for (u, v) in adjacentPairs:
+			graph[u].add(v)
+			graph[v].add(u)
+
+		for u in graph:
+			if len(graph[u]) == 1:
+				stack = [u]
+				seen = {u}
+				break
+
+		res = []
+		while stack:
+			u = stack.pop()
+
+			res.append(u)
+
+			for v in graph[u]:
+				if v not in seen:
+					stack.append(v)
+					seen.add(v)
+
+		return res
+
+class Solution(object):
+	def restoreArray(self, adjacentPairs):
 		graph = collections.defaultdict(list)
 		for (u, v) in adjacentPairs:
 			graph[u].append(v)
