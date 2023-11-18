@@ -1,5 +1,24 @@
 # https://leetcode.com/problems/frequency-of-the-most-frequent-element/ 
 
+# The problem doesn't require binary search. The sliding-window technique is sufficient.
+
+class Solution(object):
+	def maxFrequency(self, nums, k):
+		nums = sorted(nums)
+		d = 0
+		i = 0
+		res = 1
+		for j in range(1, len(nums)):
+			d += (j - i) * (nums[j] - nums[j - 1])
+
+			while d > k:
+				d -= (nums[j] - nums[i])
+				i += 1
+
+			res = max(res, j - i + 1)
+
+		return res
+
 class Solution(object):
 	def maxFrequency(self, nums, k):
 		nums = sorted(nums)
