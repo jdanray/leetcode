@@ -19,3 +19,18 @@ class Solution(object):
 					seen.add(g)
 
 		return res
+
+class Solution(object):
+	def garbageCollection(self, garbage, travel):
+		def collect(t):
+			stop = 0
+			mins = 0
+			for i, g in enumerate(garbage):
+				c = g.count(t)
+				if c > 0:
+					mins += g.count(t)
+					stop = i
+			return mins + sum(travel[i] for i in range(stop))
+
+		gtypes = "GPM"
+		return sum(collect(t) for t in gtypes)
