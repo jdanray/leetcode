@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/tuple-with-same-product/
 
-"""
-The evolution of an idea:
-"""
+# The evolution of an idea:
 
 class Solution(object):
 	def tupleSameProduct(self, nums):
@@ -76,4 +74,17 @@ class Solution(object):
 					count[p] += 1 
 				else:
 					count[p] = 1
+		return res
+
+# Simpler implementation of the final idea:
+
+class Solution(object):
+	def tupleSameProduct(self, nums):
+		count = collections.Counter()
+		res = 0
+		for i, n in enumerate(nums):
+			for j in range(i):
+				p = nums[j] * n
+				res += count[p] * 8
+				count[p] += 1
 		return res
