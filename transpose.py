@@ -1,12 +1,17 @@
 # https://leetcode.com/problems/transpose-matrix/
 
 class Solution(object):
-	def transpose(self, A):
-		m = len(A)
-		n = len(A[0])
-		B = [[0 for _ in range(n)] for _ in range(m)]
-		for i in range(m):
-			for j in range(n):
-				B[j][i] = A[i][j]
+	def transpose(self, matrix):
+		return [[matrix[i][j] for i in range(len(matrix))] for j in range(len(matrix[0]))]
 
-		return B
+class Solution(object):
+	def transpose(self, matrix):
+		M = len(matrix)
+		N = len(matrix[0])
+
+		res = [[-1 for _ in range(M)] for _ in range(N)]
+		for i in range(M):
+			for j in range(N):
+				res[j][i] = matrix[i][j]
+
+		return res
