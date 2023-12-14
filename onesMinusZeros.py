@@ -5,6 +5,16 @@ class Solution(object):
 		M = len(grid)
 		N = len(grid[0])
 
+		onesRow = [sum(grid[i][j] for j in range(N)) for i in range(M)]
+		onesCol = [sum(grid[i][j] for i in range(M)) for j in range(N)]
+
+		return [[2 * onesRow[i] + 2 * onesCol[j] - M - N for j in range(N)] for i in range(M)]
+
+class Solution(object):
+	def onesMinusZeros(self, grid):
+		M = len(grid)
+		N = len(grid[0])
+
 		onesRow = [0 for _ in range(M)]
 		onesCol = [0 for _ in range(N)]
 
