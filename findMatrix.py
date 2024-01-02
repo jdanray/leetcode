@@ -15,3 +15,16 @@ class Solution(object):
 				count[n] -= 1
 
 		return res
+
+class Solution(object):
+	def findMatrix(self, nums):
+		count = collections.Counter()
+		res = []
+		for n in nums:
+			if len(res) <= count[n]:
+				res.append([])
+
+			res[count[n]].append(n)
+			count[n] += 1
+                
+		return res
