@@ -2,6 +2,24 @@
 
 class Solution(object):
 	def findBottomLeftValue(self, root):
+		queue = [root]
+		res = -1
+		while queue:
+			res = queue[0].val
+
+			for _ in range(len(queue)):
+				u = queue.pop(0)
+
+				if u.left:
+					queue.append(u.left)
+
+				if u.right:
+					queue.append(u.right)
+
+		return res
+
+class Solution(object):
+	def findBottomLeftValue(self, root):
 		curlevel = 0
 		bottomleft = root.val
 		queue = [[root, curlevel]]
