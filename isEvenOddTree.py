@@ -2,6 +2,30 @@
 
 class Solution(object):
 	def isEvenOddTree(self, root):
+		par = 0
+		queue = [root]
+		while queue:
+			prev = None
+			for _ in range(len(queue)):
+				u = queue.pop(0)
+
+				if u.val % 2 == par:
+					return False 
+				elif prev != None and par == 0 and u.val <= prev.val:
+					return False
+				elif prev != None and par == 1 and u.val >= prev.val:
+					return False
+
+				prev = u
+				if u.left: queue.append(u.left)
+				if u.right: queue.append(u.right)
+
+			par = 1 - par
+
+		return True
+
+class Solution(object):
+	def isEvenOddTree(self, root):
 		prevnode = None
 		level = -1
 		queue = [[root, 0]]
