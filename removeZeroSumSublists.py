@@ -16,3 +16,19 @@ class Solution(object):
 
 		head.next = self.removeZeroSumSublists(head.next)
 		return head
+
+class Solution(object):
+	def removeZeroSumSublists(self, head):
+		if not head:
+			return None
+
+		s = 0
+		node = head
+		while node:
+			s += node.val
+			if s == 0:
+				return self.removeZeroSumSublists(node.next)
+			node = node.next
+
+		head.next = self.removeZeroSumSublists(head.next)
+		return head
