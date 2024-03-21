@@ -13,6 +13,18 @@ class Solution(object):
 
 class Solution(object):
 	def reverseList(self, head):
+		def reverse(head, newHead):
+			if head:
+				nxt = head.next
+				head.next = newHead
+				return reverse(nxt, head)
+			else:
+				return newHead
+
+		return reverse(head, None)
+
+class Solution(object):
+	def reverseList(self, head):
 		if not head:
 			return None
 
