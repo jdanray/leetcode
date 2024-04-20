@@ -36,3 +36,29 @@ class Solution(object):
 					res.append([i, j, k, l])
 
 		return res
+
+class Solution(object):
+	def findFarmland(self, land):
+		M = len(land)
+		N = len(land[0])
+
+		res = []
+		for i in range(M):
+			for j in range(N):
+				if land[i][j] == 0:
+					continue
+
+				rk, rl = i, j
+				k = i
+				while k < M and land[k][j] == 1:
+					rk = k
+					l = j
+					while l < N and land[k][l] == 1:
+						land[k][l] = 0
+						rl = l
+						l += 1
+					k += 1
+
+				res.append([i, j, rk, rl])
+
+		return res
