@@ -59,3 +59,29 @@ class Solution(object):
 						queue.append([newlock, nturns + 1])
 
 		return -1
+
+class Solution(object):
+	def openLock(self, deadends, target):
+		NSLOTS = 10
+		start = '0000'
+		deadends = set(deadends)
+
+		seen = {start}
+		queue = collections.deque([[start, 0]])
+		while queue:
+			u, nsteps = queue.popleft()
+
+			if u in deadends:
+				continue
+
+			if u == target:
+				return nsteps
+
+			for i in range(len(u)):
+				for d in [1, -1]:
+					v = u[:i] + str((d + int(u[i])) % NSLOTS) + u[i + 1:]
+					if v not in seen:
+						queue.append([v, nsteps + 1])
+						seen.add(v)
+
+		return -1
