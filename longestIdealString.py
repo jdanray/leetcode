@@ -17,3 +17,11 @@ class Solution(object):
 			res = max(res, dp[n])
 
 		return res
+
+class Solution(object):
+	def longestIdealString(self, s, k):
+		dp = {c: 0 for c in string.ascii_lowercase}
+		for c in s:
+			dp[c] = max(dp[c], max(1 + dp[x] for x in string.ascii_lowercase if abs(ord(c) - ord(x)) <= k))
+
+		return max(dp.values())
