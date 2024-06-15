@@ -1,19 +1,19 @@
 # https://leetcode.com/problems/ipo/
 
 class Solution(object):
-	def findMaximizedCapital(self, k, W, Profits, Capital):
-		pqpro = []
-		pqcap = zip(Capital, Profits)
-		heapq.heapify(pqcap)
+	def findMaximizedCapital(self, k, w, profits, capital):
+		maxProf = []
+		minCap = zip(capital, profits)
+		heapq.heapify(minCap)
 
 		for _ in range(k):
-			while pqcap and pqcap[0][0] <= W:
-				_, p = heapq.heappop(pqcap)
-				heapq.heappush(pqpro, -p)
+			while minCap and minCap[0][0] <= w:
+				_, p = heapq.heappop(minCap)
+				heapq.heappush(maxProf, -p)
 
-			if not pqpro:
+			if not maxProf:
 				break
 			
-			W -= heapq.heappop(pqpro) 
+			w -= heapq.heappop(maxProf) 
 
-		return W 
+		return w 
