@@ -80,3 +80,39 @@ class Solution(object):
 				paid += maxp[i - 1]
 
 		return paid
+
+"""
+I did all of the above on 9/17/2019. It is 6/17/2024 now. I thought about this problem VERY differently today. 
+
+I see that my old idea was this: For each worker w, find w the most profitable job that w can complete. So, I iterated over workers, and, for each worker, I did a binary search to find a job that satisfied the criterion. 
+
+Today, I noticed/observed that the same job can be completed multiple times, and my immediate intuition was this: Look at the absolute most profitable job. Assign it to as many workers as possible. (To that end, consider the ablest workers first: The ablest worker is most likely to be able to complete a job.)
+
+So, my first thought was a greedy algorithm: Sort the jobs in decreasing order by profit. Sort the workers in decreasing order by ability. Try to assign the first job to the first worker. If the first job is too difficult for him, it will also be too difficult for every other worker: This first worker is the ablest worker, as the workers are sorted by ability. So, ignore that job, and move onto the second most profitable job.
+
+Even though you might skip jobs, future workers can't miss out on previous, more profitable jobs, because the workers are sorted by ability. So, if a future worker can complete a job, then all the previous workers can, as well. So, they will do that job themselves. That job won't get skipped over. 
+
+With the old idea, the emphasis was on the workers: For each worker, find him the most profitable job possible. With the current idea, the focus is on jobs: Take the most profitable job, and assign it to the maximum number of workers.
+
+Here is the new program. I believe that it is simpler:
+"""
+
+class Solution(object):
+	def maxProfitAssignment(self, difficulty, profit, worker):
+		M = len(profit)
+		N = len(worker)
+
+		jobs = sorted(zip(profit, difficulty), reverse=True)
+		worker = sorted(worker, reverse=True)
+
+		i = 0
+		j = 0
+		res = 0
+		while i < M and j < N:
+			if worker[j] >= jobs[i][1]:
+				res += jobs[i][0]
+				j += 1
+			else:
+				i += 1
+
+		return res 
