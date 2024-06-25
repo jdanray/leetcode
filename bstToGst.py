@@ -18,3 +18,19 @@ class Solution(object):
 			left.val += root.val
 
 		return root
+
+class Solution(object):
+	def bstToGst(self, root):
+		def listify(node):
+			if node:
+				return listify(node.left) + [node] + listify(node.right)
+			else:
+				return []
+
+		nums = listify(root)
+		s = 0
+		for i in range(len(nums) - 1, -1, -1):
+			nums[i].val += s
+			s = nums[i].val
+
+		return root
