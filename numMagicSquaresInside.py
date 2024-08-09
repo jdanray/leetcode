@@ -34,8 +34,8 @@ class Solution(object):
 		N = len(grid[0])
 
 		res = 0
-		for i in range(M - 2):
-			for j in range(N - 2):
+		for i in range(M - K + 1):
+			for j in range(N - K + 1):
 				nums = {grid[i + r][j + c] for r in range(K) for c in range(K)}
 				if nums != set(range(1, K * K + 1)):
 					continue
