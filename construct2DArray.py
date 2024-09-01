@@ -13,3 +13,14 @@ class Solution(object):
 				k += 1
 
 		return res
+
+class Solution(object):
+	def construct2DArray(self, original, m, n):
+		if len(original) != m * n:
+			return []
+
+		res = [[-1 for _ in range(n)] for _ in range(m)]
+		for i, o in enumerate(original):
+			res[i // n][i % n] = o
+
+		return res
