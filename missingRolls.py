@@ -46,3 +46,26 @@ class Solution(object):
 				q -= 1
 
 		return res
+
+
+# New solution
+
+class Solution(object):
+	def missingRolls(self, rolls, mean, n):
+		D = 6
+
+		s = (mean * (len(rolls) + n)) - sum(rolls)
+		if n > s:
+			return []
+
+		res = [1] * n
+		s -= n
+		for i in range(len(res)):
+			if s == 0:
+				break
+
+			x = min(D, s + 1)
+			res[i] = x			
+			s -= (x - 1)
+
+		return res if s == 0 else []
