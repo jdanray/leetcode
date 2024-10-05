@@ -20,7 +20,22 @@ class Solution(object):
 
 		return False
 
-from collections import Counter
+class Solution(object):
+	def checkInclusion(self, s1, s2):
+		count1 = collections.Counter(s1)
+		count2 = collections.Counter()
+		i = 0
+		for j, c in enumerate(s2):
+			count2[c] += 1
+
+			while count1[c] < count2[c]:
+				count2[s2[i]] -= 1
+				i += 1
+
+			if all(count1[x] == count2[x] for x in string.ascii_lowercase):
+				return True
+
+		return False
 
 class Solution:
 	def checkInclusion(self, s1, s2):
