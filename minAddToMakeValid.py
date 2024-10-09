@@ -1,6 +1,20 @@
 # https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
 
 class Solution(object):
+	def minAddToMakeValid(self, s):
+		opened = 0
+		closed = 0
+		for c in s:
+			if c == '(':
+				opened += 1
+			elif opened == 0:
+				closed += 1
+			else:
+				opened -= 1
+
+		return opened + closed
+
+class Solution(object):
 	def minAddToMakeValid(self, S):
 		opened = 0
 		hanging = 0
