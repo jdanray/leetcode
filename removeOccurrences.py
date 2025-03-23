@@ -16,3 +16,24 @@ class Solution(object):
 				return self.removeOccurrences(s[:i] + s[j:], part)
 
 		return s
+
+class Solution(object):
+	def removeOccurrences(self, s, part):
+		stack = []
+		for c in s:
+			stack.append(c)
+
+			if len(stack) < len(part):
+				continue
+
+			j = len(stack) - 1
+			k = len(part) - 1
+			while j >= 0 and k >= 0 and stack[j] == part[k]:
+				j -= 1
+				k -= 1
+
+			if k < 0:
+				for _ in range(len(part)):
+					stack.pop()
+
+		return ''.join(stack)
