@@ -18,3 +18,27 @@ class Solution(object):
 			return ""
 		else:
 			return generate(n)[k - 1]
+			
+class Solution(object):
+	def getHappyString(self, n, k):
+		chars = 'abc'
+
+		queue = ['']
+		res = ''
+		while queue:
+			s = queue.pop(0)
+
+			if len(s) == n:
+				res = s
+				k -= 1
+
+				if k == 0:
+					return res
+				else:
+					continue
+
+			for c in chars:
+				if not s or c != s[-1]:
+					queue.append(s + c)
+
+		return ''
