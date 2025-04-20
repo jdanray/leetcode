@@ -2,14 +2,6 @@
 
 class Solution:
 	def numRabbits(self, answers):
-		num = 0
-		count = collections.Counter(answers)
-		for n in count:
-			num += int(math.ceil(count[n] / (n + 1)) * (n + 1))
-		return num
-
-class Solution:
-	def numRabbits(self, answers):
 		nrabbits = 0
 		nseen = dict()
 		for n in answers:
