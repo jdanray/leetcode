@@ -1,17 +1,20 @@
-# https://leetcode.com/problems/calculate-score-after-performing-instructions/
+# https://leetcode.com/problems/find-mirror-score-of-a-string/
 
 class Solution(object):
-	def calculateScore(self, instruct, values):
-		seen = set()
-		i = 0
+	def calculateScore(self, s):
+		char2idx = {c: i for i, c in enumerate(string.ascii_lowercase)}
+		def reflect(c): 
+			i = char2idx[c]
+			return string.ascii_lowercase[len(string.ascii_lowercase) - i - 1]
+
+		mirror = collections.defaultdict(list)
 		res = 0
-		while i >= 0 and i < len(instruct) and i not in seen:
-			seen.add(i)
-            
-			if instruct[i] == "add":
-				res += values[i]
-				i += 1
-			elif instruct[i] == "jump":
-				i += values[i]
+		for i, c in enumerate(s):
+			r = reflect(c)
+			if mirror[r]:
+				j = mirror[r].pop()
+				res += i - j				
+			else:
+				mirror[c].append(i)
 
 		return res
