@@ -3,17 +3,13 @@
 class Solution(object):
 	def calculateScore(self, s):
 		char2idx = {c: i for i, c in enumerate(string.ascii_lowercase)}
-		def reflect(c): 
-			i = char2idx[c]
-			return string.ascii_lowercase[len(string.ascii_lowercase) - i - 1]
-
 		mirror = collections.defaultdict(list)
 		res = 0
 		for i, c in enumerate(s):
-			r = reflect(c)
+			r = string.ascii_lowercase[-char2idx[c] - 1]
 			if mirror[r]:
 				j = mirror[r].pop()
-				res += i - j				
+				res += i - j
 			else:
 				mirror[c].append(i)
 
