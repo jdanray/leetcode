@@ -2,6 +2,23 @@
 
 class Solution(object):
 	def minMaxDifference(self, num):
+		n = str(num)
+
+		i = 0
+		while i < len(n) and n[i] == '9':
+			i += 1
+
+		if i < len(n):
+			maxim = n.replace(n[i], '9')
+		else:
+			maxim = n
+
+		minim = n.replace(n[0], '0')
+
+		return int(maxim) - int(minim)
+
+class Solution(object):
+	def minMaxDifference(self, num):
 		maxnum = -float('inf')
 		minnum = float('inf')
 		for d1 in range(10):
