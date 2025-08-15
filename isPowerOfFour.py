@@ -2,6 +2,20 @@
 
 class Solution(object):
 	def isPowerOfFour(self, n):
+		def isPowerOf(b, n):
+			if n <= 0:
+				return False
+
+			p = 1
+			while p < n:
+				p *= b
+
+			return p == n
+
+		return isPowerOf(4, n)
+
+class Solution(object):
+	def isPowerOfFour(self, n):
 		r = -1
 		b = 0
 		while n > 0 and b == 0:
