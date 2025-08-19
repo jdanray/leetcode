@@ -2,6 +2,18 @@
 
 class Solution(object):
 	def zeroFilledSubarray(self, nums):
+		z = 0
+		res = 0
+		for n in nums:
+			if n == 0:
+				z += 1
+			else:
+				z = 0
+			res += z
+		return res
+
+class Solution(object):
+	def zeroFilledSubarray(self, nums):
 		res = 0
 		i = 0
 		for j, n in enumerate(nums):
