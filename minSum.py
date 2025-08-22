@@ -1,4 +1,4 @@
-#
+# https://leetcode.com/problems/minimum-equal-sum-of-two-arrays-after-replacing-zeros/
 
 class Solution(object):
 	def minSum(self, nums1, nums2):
@@ -11,3 +11,4 @@ class Solution(object):
 			return s1 if 0 in nums2 else -1
 		elif s2 > s1:
 			return s2 if 0 in nums1 else -1
+
