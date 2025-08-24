@@ -116,3 +116,33 @@ class Solution(object):
 				i += 1
 			res = max(res, j - i)
 		return res
+
+"""
+This problem was a Daily Question for 8/23/2025. I solved it without reference to the previous solutions above. This program is based on the same fundamental idea as my original program, but this program is simpler and more space-efficient:
+"""
+
+class Solution(object):
+	def longestSubarray(self, nums):
+		prev = -1
+		zeros = 0
+		left = 0
+		right = 0
+		res = 0
+		for n in nums:
+			if n == 1:
+				right += 1
+			elif prev == 1:
+				zeros = 1
+				left = right
+				right = 0
+			else:
+				zeros += 1
+
+			if zeros == 1:
+				res = max(res, left + right)
+			else:
+				res = max(res, right)	
+
+			prev = n
+
+		return res - 1 if res == len(nums) else res
