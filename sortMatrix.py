@@ -25,7 +25,6 @@ class Solution(object):
 				n = heapq.heappop(pq)
 				grid[i + j][j] = -n
 
-
 		return grid
 
 class Solution(object):
