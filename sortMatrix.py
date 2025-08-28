@@ -25,4 +25,25 @@ class Solution(object):
 				n = heapq.heappop(pq)
 				grid[i + j][j] = -n
 
+
+		return grid
+
+class Solution(object):
+	def sortMatrix(self, grid):
+		N = len(grid)
+
+		# top right
+		for j in range(1, N):
+			pq = [grid[i][j + i] for i in range(N - j)]
+			pq.sort()
+			for i in range(N - j):
+				grid[i][j + i] = pq[i]
+
+		# bottom left
+		for i in range(N):
+			pq = [grid[i + j][j] for j in range(N - i)]
+			pq.sort(reverse=True)
+			for j in range(N - i):
+				grid[i + j][j] = pq[j]
+
 		return grid
