@@ -3,6 +3,17 @@
 class Solution(object):
 	def longestSquareStreak(self, nums):
 		nums = sorted(nums)
+		dp = collections.Counter()
+		res = 1
+		for n in nums:
+			dp[n * n] = dp[n] + 1
+			res = max(res, dp[n] + 1)
+
+		return -1 if res == 1 else res
+
+class Solution(object):
+	def longestSquareStreak(self, nums):
+		nums = sorted(nums)
 
 		dp = collections.Counter()
 		res = -1
