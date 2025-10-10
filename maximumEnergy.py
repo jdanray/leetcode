@@ -2,18 +2,25 @@
 
 class Solution(object):
 	def maximumEnergy(self, energy, k):
+		res = float('-inf')
+		for i in range(len(energy) - 1, -1, -1):
+			if i + k < len(energy):
+				energy[i] += energy[i + k]
+			res = max(res, energy[i])
+		return res
+
+class Solution(object):
+	def maximumEnergy(self, energy, k):
 		N = len(energy)
 
-		dp = [0 for _ in range(N)] # dp[i] is amount of energy accumulated if you start at i
+		dp = [0 for _ in range(N)]	# dp[i] is amount of energy accumulated if you start at i
 		res = float('-inf')
 		for i in range(N - 1, -1, -1):
 			if i + k < N:
 				dp[i] = energy[i] + dp[i + k]
 			else:
 				dp[i] = energy[i]
-
 			res = max(res, dp[i])
-
 		return res
 
 class Solution(object):
