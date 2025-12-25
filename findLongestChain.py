@@ -1,5 +1,17 @@
 # https://leetcode.com/problems/maximum-length-of-pair-chain/
 
+# doesn't assume that pairs is non-empty
+class Solution(object):
+	def findLongestChain(self, pairs):
+		pairs = sorted(pairs, key=lambda p: p[1])
+		tail = -float('inf')
+		res = 0
+		for (l, r) in pairs:
+			if tail < l:
+				tail = r
+				res += 1
+		return res
+
 class Solution:
 	def findLongestChain(self, pairs):
 		pairs = sorted(pairs, key=lambda p: p[1])
