@@ -13,3 +13,20 @@ class Solution(object):
 			elif d == maxd:
 				res.append([arr[i], arr[i + 1]])
 		return res
+
+class Solution(object):
+	def minimumAbsDifference(self, arr):
+		arr = sorted(arr)
+		res = []
+		for i in range(1, len(arr)):
+			pair = [arr[i - 1], arr[i]]
+			if not res:
+				res = [pair]
+			else:
+				m = res[-1][1] - res[-1][0]
+				d = arr[i] - arr[i - 1]
+				if d == m:
+					res.append(pair)
+				elif d < m:
+					res = [pair]
+		return res
