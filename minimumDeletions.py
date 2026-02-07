@@ -2,6 +2,26 @@
 
 class Solution(object):
 	def minimumDeletions(self, s):
+		a = s.count('a')
+		b = 0
+		res = float('inf')
+		for c in s:
+			if c == 'a':
+				a -= 1
+
+			res = min(res, a + b)
+
+			if c == 'b':
+				b += 1
+
+		return res
+
+"""
+In November, 2020, I came upon the following two solutions. It is now February 6, 2026, and I came up with the above solution. The above solution is much cleaner. I thought of the idea for it immediately. It only took a few minutes to work out all of the implementation details.
+"""
+
+class Solution(object):
+	def minimumDeletions(self, s):
 		N = len(s)
 
 		# number of b's to the left
@@ -23,7 +43,7 @@ class Solution(object):
 		return min(left[i] + right[i] for i in range(N))
 
 """
-After I solve problems, I like to examine other people's solutions
+After I solve problems, I like to examine other people's solutions.
 
 The following is my Python implementation of a program written in Java. You can see the original program here: https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/discuss/935374/2-Solutions-or-Easy-to-Understand-Code-with-Detailed-Steps-O(n)-Time-O(1)-Space
 
